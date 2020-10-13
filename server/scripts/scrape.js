@@ -21,7 +21,6 @@ module.exports = async (url)=>{
     }
   } catch (err){
     const {status, statusText} = err.response
-    console.error(status, statusText)
     return {status, data: statusText }
   }
 
