@@ -2,6 +2,8 @@
 node_modules
 /dist
 
+*.txt
+
 #  env files
 .env
 .env.local
@@ -12,6 +14,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+# json log
+scrappedData.json
+
 
 # Editor directories and files
 .idea
