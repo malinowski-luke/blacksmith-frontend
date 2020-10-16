@@ -2,12 +2,11 @@ const mongoose = require('mongoose')
 const moment = require('moment')
 
 const productsSchema = new mongoose.Schema({
-  url: {
-    type: String,
+  channel_id: {
+    type: Number,
     required: true,
   },
-  // check wat type is _id in mongodb
-  user_id: {
+  url: {
     type: String,
     required: true,
   },
@@ -23,11 +22,11 @@ const productsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  hasPrime: {
+  has_prime: {
     type: Boolean,
     required: true,
   },
-  dateAdded: {
+  date_added: {
     type: Date,
     default: () => moment.utc().toDate(),
   },
