@@ -1,7 +1,6 @@
 const scrape = require('../scripts/scrape')
 const ProductModel = require('../models/product')
 const logScrappedData = require('../scripts/logScrappedData')
-const product = require('../models/product')
 
 module.exports = {
   getProductInfo: async (req, res) => {
@@ -12,6 +11,7 @@ module.exports = {
 
     if (status === 200) {
       product = await ProductModel.create({
+        // replace with real channel id when connecting front-end
         channel_id: 120374120371,
         url: data.url,
         title: data.title,
@@ -23,6 +23,6 @@ module.exports = {
       logScrappedData(data)
     } else errorMsg = data
 
-    res.status(status).send(product || errorMsg)
+    res.status(status === 200 ? 201 : status).send(product || errorMsg)
   },
 }

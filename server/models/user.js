@@ -1,8 +1,9 @@
 const mongoose = require('mongoose')
+const moment = require('moment')
 
 const usersSchema = new mongoose.Schema({
   channel_id: {
-    type: Number,
+    type: String,
     required: true,
   },
   channel_name: {
@@ -13,12 +14,18 @@ const usersSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  created_at: {
+    type: Date,
+    default: () => moment.utc().toDate(),
+  },
   deactivated: {
     type: Boolean,
     default: false,
+    required: false,
   },
   deactivated_date: {
     type: Date,
+    required: false,
   },
 })
 
