@@ -1,16 +1,23 @@
 const fs = require('fs')
 const _ = require('lodash')
 
-const directory = `${__dirname}/../../scrappedData.json`
+module.exports = (logData, fileName) => {
+  // file path
+  const directory = `${__dirname}/../logs/${fileName}.json`
 
-module.exports = (scrappedData) => {
   // read
-  let logData = JSON.parse(fs.readFileSync(directory))
+  let logDataFile = JSON.parse(fs.readFileSync(directory))
+
+  // check if log file contains
+  const logFileHasData = _.some(
+    logDataFile,
+    (data) => data.channel_id === logData.channel_id && data.url === logData.url
+  )
 
   // write
-  if (!_.some(logData, scrappedData)) {
-    logData.push(scrappedData)
-    fs.writeFileSync(directory, JSON.stringify(logData, null, 4))
-    console.log('item added to the log file ')
-  } else console.log('this item already exist in the log file')
+  if (!logFileHasData) {
+    logDataFile.push(logData)
+    fs.writeFileSync(directory, JSON.stringify(logDataFile, null, 4))
+    console.log('data added to the log file ')
+  } else console.log(`this data already exists in the ${fileName} log file`)
 }

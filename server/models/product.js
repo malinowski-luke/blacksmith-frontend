@@ -3,7 +3,7 @@ const moment = require('moment')
 
 const productsSchema = new mongoose.Schema({
   channel_id: {
-    type: Number,
+    type: String,
     required: true,
   },
   url: {

@@ -21,7 +21,6 @@ const usersSchema = new mongoose.Schema({
   deactivated: {
     type: Boolean,
     default: false,
-    required: false,
   },
   deactivated_date: {
     type: Date,
