@@ -1,5 +1,7 @@
 <template>
-  <h1>Panel</h1>
+  <div class="panel">
+    <h1>Panel</h1>
+  </div>
 </template>
 
 <script>
@@ -8,4 +10,8 @@
   }
 </script>
 
-<style></style>
+<style>
+  .panel {
+    text-align: center;
+  }
+</style>

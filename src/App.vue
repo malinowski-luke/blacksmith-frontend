@@ -5,7 +5,11 @@
 </template>
 
 <script>
-  let channelID = window.Twitch.ext.onAuthorized((auth) => auth.channelId))
+  let channelID
+
+  window.Twitch.ext.onAuthorized((auth) => {
+    channelID = auth.channelId
+  })
 
   export default {
     name: 'App',
@@ -14,11 +18,12 @@
     },
     created() {
       console.log(channelID)
+      window.Twitch.ext.rig.log(channelID)
     },
   }
 </script>
 
 <style>
-  #app {
-  }
+  /* #app {
+  } */
 </style>
