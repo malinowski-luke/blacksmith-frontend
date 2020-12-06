@@ -1,33 +1,41 @@
 const UserModel = require('../models/user')
 const moment = require('moment')
+const axios = require('axios')
 module.exports = {
   createUser: async (req, res) => {
-    const { channel_id, channel_name, logo } = req.body
+    const channel_id = req.params.channel_id
+    const client_id = req.body.client_id
+
     let user
 
-    // check body for required data
-    if (!channel_name || !channel_id || !logo)
-      return res
-        .status(417)
-        .send('Body Request Requires: channel_id, channel_name, logo')
+    try {
+      // check if user exists
+      const userExists = await UserModel.findOne({ channel_id })
+      if (userExists) return res.status(400).send('User Already Exists!')
 
-    // check if user exists
-    const userExists = await UserModel.findOne({ channel_id })
-    if (userExists) return res.status(400).send('User Already Exists!')
+      // get user info from twitch
+      const { data } = await axios.get(
+        `https://api.twitch.tv/kraken/channels/${channel_id}`,
+        {
+          headers: {
+            'Client-ID': client_id,
+            Accept: 'application/vnd.twitchtv.v5+json',
+          },
+        }
+      )
 
-    user = await UserModel.create({
-      channel_id,
-      channel_name,
-      logo,
-    })
-
+      user = await UserModel.create({
+        channel_id,
+        channel_name: data.name,
+        logo: data.logo,
+      })
+    } catch (err) {
+      return res.status(500).send(err)
+    }
     res.status(201).send(user)
   },
   getUser: async (req, res) => {
-    const { channel_id } = req.body
-
-    if (!channel_id)
-      return res.status(400).send('Twitch Channel ID is Required!')
+    const channel_id = req.params.channel_id
 
     const user = await UserModel.findOne({ channel_id })
 
@@ -36,21 +44,22 @@ module.exports = {
     res.status(200).send(user.toJSON())
   },
   markUserForDeletion: async (req, res) => {
-    const { channel_id } = req.body
+    const channel_id = req.params.channel_id
 
-    if (!channel_id) return res.status(400).send('channel_id is Required!')
-
-    await UserModel.findOneAndUpdate(
-      channel_id,
-      {
-        deactivated: true,
-        deactivated_date: moment.utc().toDate(),
-      },
-      (err) => {
-        if (err) return err
-      }
-    )
-
+    try {
+      await UserModel.findOneAndUpdate(
+        channel_id,
+        {
+          deactivated: true,
+          deactivated_date: moment.utc().toDate(),
+        },
+        (err) => {
+          if (err) return err
+        }
+      )
+    } catch (err) {
+      res.status(500).send(err)
+    }
     res.status(202).send('User Marked For Deletion!')
   },
 }

@@ -5,8 +5,17 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
     name: 'Panel',
+    computed: {
+      ...mapGetters(['user']),
+    },
+    mounted() {
+      console.log(this.user)
+    },
+    methods: {},
   }
 </script>
 

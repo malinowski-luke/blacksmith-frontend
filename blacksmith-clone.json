@@ -5,7 +5,7 @@
   "certificateExceptions": [],
   "extensionViews": [
     {
-      "channelId": "265737932",
+      "channelId": "587785243",
       "configurationAnchor": "panel",
       "displayChannelName": "malinowsl123",
       "features": {
@@ -19,12 +19,12 @@
       },
       "id": "1",
       "isPopout": false,
-      "label": "Panel",
+      "label": "Test",
       "linked": false,
       "linkedUserId": "",
       "orientation": "Portrait",
       "type": "panel",
-      "viewerType": "Logged-In Viewer"
+      "viewerType": "Broadcaster"
     }
   ],
   "manifest": {
