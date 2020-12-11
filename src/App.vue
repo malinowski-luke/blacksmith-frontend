@@ -17,9 +17,11 @@ export default {
     computed: { ...mapGetters(["user", "updated_at"]) },
 
     mounted() {
-        this.fetchTwitchUserData();
-        console.log(this.user);
-        console.log(this.updated_at);
+        if (!this.user.channel_id) {
+            console.log("hit");
+            this.fetchTwitchUserData();
+        }
+        console.log("user store", this.user);
     },
 
     methods: {
@@ -28,8 +30,9 @@ export default {
                 const channel_id = auth.channelId,
                     client_id = auth.clientId;
 
-                let user;
+                // console.log(auth.token, auth.userId);
 
+                let user;
                 user = await this.authenticateUser(channel_id);
                 if (!user) user = await this.createUser(channel_id, client_id);
 

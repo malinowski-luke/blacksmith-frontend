@@ -1,26 +1,26 @@
 <template>
-  <div class="panel">
-    <h1>Panel</h1>
-  </div>
+    <div class="panel">
+        <h1>Panel</h1>
+    </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
-  export default {
-    name: 'Panel',
+export default {
+    name: "Panel",
     computed: {
-      ...mapGetters(['user']),
+        ...mapGetters(["user"])
     },
     mounted() {
-      console.log(this.user)
+        //   console.log(this.user)
     },
-    methods: {},
-  }
+    methods: {}
+};
 </script>
 
 <style>
-  .panel {
+.panel {
     text-align: center;
-  }
+}
 </style>
