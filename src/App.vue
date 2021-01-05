@@ -17,11 +17,7 @@ export default {
     computed: { ...mapGetters(["user", "updated_at"]) },
 
     mounted() {
-        if (!this.user.channel_id) {
-            console.log("hit");
-            this.fetchTwitchUserData();
-        }
-        console.log("user store", this.user);
+        if (!this.user.channel_id) this.fetchTwitchUserData();
     },
 
     methods: {
