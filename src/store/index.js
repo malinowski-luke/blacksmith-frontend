@@ -4,6 +4,7 @@ import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 // modules
 import user from "./modules/user";
+import products from "./modules/products";
 
 Vue.use(Vuex);
 

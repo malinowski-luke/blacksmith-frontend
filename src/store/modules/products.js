@@ -7,17 +7,17 @@ export default {
         updated_at: moment().format()
     },
     mutations: {
-        "product:set"(state, { products }) {
+        "products:set"(state, { products }) {
             Vue.set(state.products, "products", products);
             Vue.set(state, "updated_at", moment().format());
         },
-        "product:clear"(state) {
+        "products:clear"(state) {
             Vue.set(state.products, "products", []);
             Vue.set(state, "updated_at", moment().format());
         }
     },
     getters: {
-        product(state) {
+        products(state) {
             return state.product;
         },
         updated_at(state) {
