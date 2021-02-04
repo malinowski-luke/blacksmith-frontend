@@ -7,7 +7,6 @@
 <script>
 import { mapGetters } from "vuex";
 import axios from "axios";
-const Twitch = window.Twitch.ext;
 
 export default {
     name: "App",
@@ -22,7 +21,7 @@ export default {
 
     methods: {
         fetchTwitchUserData() {
-            Twitch.onAuthorized(async auth => {
+            window.Twitch.ext.onAuthorized(async auth => {
                 const channel_id = auth.channelId,
                     client_id = auth.clientId;
 
@@ -49,7 +48,8 @@ export default {
 
         async createUser(channel_id, client_id) {
             try {
-                const { data } = await axios.post(`/user/${channel_id}`, {
+                const { data } = await axios.post(`/user/new`, {
+                    channel_id,
                     client_id
                 });
                 return data;
@@ -73,6 +73,6 @@ export default {
 </script>
 
 <style>
-/* #app {
-  } */
+#app {
+}
 </style>

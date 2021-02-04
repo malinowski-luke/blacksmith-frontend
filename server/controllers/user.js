@@ -3,8 +3,7 @@ const moment = require("moment");
 const axios = require("axios");
 module.exports = {
     createUser: async (req, res) => {
-        const channel_id = req.params.channel_id;
-        const client_id = req.body.client_id;
+        const { client_id, channel_id } = req.body.client_id;
 
         let user;
 
@@ -34,6 +33,7 @@ module.exports = {
         }
         res.status(201).send(user);
     },
+
     getUser: async (req, res) => {
         const channel_id = req.params.channel_id;
 
@@ -43,8 +43,9 @@ module.exports = {
 
         res.status(200).send(user.toJSON());
     },
+
     markUserForDeletion: async (req, res) => {
-        const channel_id = req.params.channel_id;
+        const channel_id = req.body.channel_id;
 
         try {
             await UserModel.findOneAndUpdate(

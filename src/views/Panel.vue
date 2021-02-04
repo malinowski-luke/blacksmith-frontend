@@ -1,21 +1,43 @@
 <template>
     <div class="panel">
-        <h1>Panel</h1>
+        <h1>Panel!</h1>
     </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import axios from "axios";
+
+const { log } = window.Twitch.ext.rig;
 
 export default {
     name: "Panel",
+
     computed: {
-        ...mapGetters(["user"])
+        ...mapGetters(["user", "products"])
     },
-    mounted() {
-        //   console.log(this.user)
+
+    created() {
+        this.fetchProducts();
     },
-    methods: {}
+
+    methods: {
+        async fetchProducts() {
+            try {
+                const response = await axios.post(
+                    "http://localhost:3000/product",
+                    {
+                        channel_id: this.user.channel_id
+                    }
+                );
+                // work here
+                log(response.data);
+            } catch (err) {
+                log(err);
+                console.log(err);
+            }
+        }
+    }
 };
 </script>
 
