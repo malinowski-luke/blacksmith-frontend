@@ -18,29 +18,20 @@
 </script>
 
 <style lang="scss">
+  @import '../assets/sass/_index.scss';
   .amazon-ad {
     width: 100%;
     height: 125px;
-    background: linear-gradient(
-      135deg,
-      rgba(243, 124, 44, 1) 0%,
-      rgba(191, 64, 57, 1) 90%
-    );
-
+    background: linear-gradient(135deg, $orange 0%, $orange-red 90%);
     text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex();
 
     .inner-box {
       width: calc(100% - 15px);
       height: calc(125px - 15px);
-      background: #221c30;
+      background: $dark-purple;
 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      @include flex(column);
       img {
         margin-bottom: 5px;
         width: 90px;
@@ -48,7 +39,7 @@
 
       h3 {
         margin: 0;
-        color: #fff;
+        color: $white;
       }
     }
   }

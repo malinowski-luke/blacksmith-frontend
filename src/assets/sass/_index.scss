@@ -1,0 +1,10 @@
+// files
+@import './_reset.scss';
+@import './_colors.scss';
+
+//mixins
+@import './mixins/_flex.scss';
+
+body {
+  font-family: 'Roboto', sans-serif;
+}

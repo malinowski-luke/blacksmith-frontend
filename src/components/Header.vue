@@ -11,17 +11,16 @@
 </script>
 
 <style lang="scss">
+  @import '../assets/sass/_index.scss';
   .header {
     position: sticky;
     top: 0;
     width: 100%;
     height: 5vh;
-    color: white;
-    background: #221c30;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 5px 10px #000000;
+    color: $white;
+    background: $dark-purple;
+    box-shadow: 0 5px 10px $black;
+    @include flex();
 
     img {
       width: 30px;

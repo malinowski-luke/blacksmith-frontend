@@ -71,21 +71,11 @@
   }
 </script>
 
-<style>
+<style lang="scss">
+  @import './assets/sass/_index.scss';
   #app {
-    /* reset */
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-
-    font-family: 'Roboto', sans-serif;
-
     width: 100%;
     height: 100vh;
-    background: linear-gradient(
-      149deg,
-      rgba(56, 39, 106, 1) 5%,
-      rgba(36, 49, 63, 1) 90%
-    );
+    background: linear-gradient(149deg, $purple 5%, $dark-gray 90%);
   }
 </style>
