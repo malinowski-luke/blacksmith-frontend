@@ -25,6 +25,28 @@
       "orientation": "Portrait",
       "type": "panel",
       "viewerType": "Broadcaster"
+    },
+    {
+      "channelId": "587785243",
+      "configurationAnchor": "panel",
+      "displayChannelName": "malinowsl123",
+      "features": {
+        "isBitsEnabled": false,
+        "isChatEnabled": false,
+        "isSubscriptionStatusAvailable": false
+      },
+      "frameSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "id": "2",
+      "isPopout": false,
+      "label": "Config",
+      "linked": true,
+      "linkedUserId": "265737932",
+      "orientation": "Portrait",
+      "type": "config",
+      "viewerType": "Broadcaster"
     }
   ],
   "manifest": {
@@ -64,7 +86,7 @@
     "views": {
       "panel": {
         "viewerUrl": "http://localhost:8080/panel.html",
-        "height": 1000,
+        "height": 500,
         "canLinkExternalContent": false
       },
       "config": {

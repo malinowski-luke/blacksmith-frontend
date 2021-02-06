@@ -5,6 +5,10 @@
 //mixins
 @import './mixins/_flex.scss';
 
+.text-center {
+  text-align: center !important;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
 }

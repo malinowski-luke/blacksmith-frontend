@@ -16,10 +16,11 @@
     position: sticky;
     top: 0;
     width: 100%;
-    height: 5vh;
+    height: 50px;
     color: $white;
     background: $dark-purple;
     box-shadow: 0 5px 10px $black;
+    z-index: 1;
     @include flex();
 
     img {

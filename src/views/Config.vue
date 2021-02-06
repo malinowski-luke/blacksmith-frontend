@@ -1,6 +1,4 @@
-<template>
-  <h1>Config</h1>
-</template>
+<template> <div>hello</div></template>
 
 <script>
   export default {
