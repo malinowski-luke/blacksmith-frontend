@@ -17,23 +17,30 @@
 
     computed: { ...mapGetters(['user', 'updated_at']) },
 
-    mounted() {
+    created() {
       if (!this.user.channel_id) this.fetchTwitchUserData()
     },
 
     methods: {
       fetchTwitchUserData() {
+        let user
+
         window.Twitch.ext.onAuthorized(async (auth) => {
           const channel_id = auth.channelId,
             client_id = auth.clientId
 
-          // console.log(auth.token, auth.userId);
-
-          let user
           user = await this.authenticateUser(channel_id)
           if (!user) user = await this.createUser(channel_id, client_id)
 
-          if (user) this.setUserToStore({ ...user, channel_id, client_id })
+          if (user) {
+            let { channel_id, channel_name, logo } = user
+            this.$store.commit('user:set', {
+              channel_id,
+              channel_name,
+              logo,
+            })
+            this.$store.commit('client_id:set', { client_id })
+          }
         })
       },
 
@@ -58,16 +65,6 @@
           console.error(err.message)
           return
         }
-      },
-
-      setUserToStore(user) {
-        const { channel_id, channel_name, logo, client_id } = user
-        this.$store.commit('user:set', {
-          channel_id,
-          channel_name,
-          logo,
-        })
-        this.$store.commit('client_id:set', { client_id })
       },
     },
   }

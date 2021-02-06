@@ -5,23 +5,17 @@
       <div class="product-list">
         <div class="product-list-header">
           <div class="streamer-info">
-            <img
-              src="https://www.xovi.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png"
-            />
-            <p>Luke's <br />STREAM GEAR</p>
+            <img :src="user.logo" />
+            <p>{{ formatStr(user.channel_name, 20) }} <br />STREAM GEAR</p>
           </div>
           <MenuIcon v-on:toggle-show-hide="showHideProduct" />
         </div>
         <div class="product-list-body" ref="productList">
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
+          <ProductItem
+            v-for="product in products"
+            :key="product._id"
+            :product="product"
+          />
         </div>
       </div>
     </div>
@@ -32,8 +26,9 @@
 <script>
   import { mapGetters } from 'vuex'
   import axios from 'axios'
+
   import AmazonAd from '../components/AmazonAd'
-  import Product from '../components/Product'
+  import ProductItem from '../components/ProductItem'
   import MenuIcon from '../components/MenuIcon'
   import Footer from '../components/Footer'
 
@@ -42,7 +37,7 @@
 
     components: {
       AmazonAd,
-      Product,
+      ProductItem,
       MenuIcon,
       Footer,
     },
@@ -52,7 +47,11 @@
     },
 
     created() {
-      // this.fetchProducts()
+      if (this.products.length === 0) this.fetchProducts()
+    },
+
+    mounted() {
+      console.log(this.products)
     },
 
     methods: {
@@ -61,12 +60,17 @@
           const response = await axios.post('http://localhost:3000/product', {
             channel_id: this.user.channel_id,
           })
-          // work here
-          console.log(response.data)
+
+          console.log(response)
+          if (response.data.length > 0) {
+            console.log('hit')
+            this.$store.commit('products:set', { products: [...response.data] })
+          }
         } catch (err) {
           console.log(err)
         }
       },
+
       showHideProduct() {
         this.$refs.productList.classList.toggle('show')
       },

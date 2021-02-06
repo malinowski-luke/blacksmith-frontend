@@ -1,17 +1,11 @@
 <template>
-  <a
-    class="product"
-    href="https://images-na.ssl-images-amazon.com/images/I/51e4qbkMDCL._AC_SL1200_.jpg"
-    target="_blank"
-  >
-    <img
-      src="https://images-na.ssl-images-amazon.com/images/I/51e4qbkMDCL._AC_SL1200_.jpg"
-    />
+  <a class="product" :href="product.url" target="_blank">
+    <img :src="product.img" />
     <div>
-      <p>Surge protector</p>
+      <p>{{ formatStr(product.title, 20) }}</p>
       <span>
-        $39.99
-        <img v-if="true" src="../assets/img/prime.png" />
+        {{ product.price }}
+        <img v-if="product.has_prime === true" src="../assets/img/prime.png" />
       </span>
     </div>
   </a>
@@ -19,7 +13,8 @@
 
 <script>
   export default {
-    name: 'Product',
+    name: 'ProductItem',
+    props: ['product'],
   }
 </script>
 
@@ -44,7 +39,8 @@
     img {
       width: 100px;
       height: 100px;
-      border-radius: inherit;
+      border-top-left-radius: inherit;
+      border-bottom-left-radius: inherit;
     }
 
     div {
@@ -60,6 +56,7 @@
         img {
           width: 35px;
           height: 20px;
+          margin-left: 5px;
         }
       }
     }
