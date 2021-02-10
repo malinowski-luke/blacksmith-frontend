@@ -29,6 +29,7 @@
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
+    text-decoration: none;
     @include flex(row, flex-start, center);
     transition: all 0.5s ease;
 
@@ -47,6 +48,9 @@
       margin-left: 10px;
       color: $white;
 
+      p {
+        margin: 0;
+      }
       span {
         margin: 5px 0;
         vertical-align: baseline;

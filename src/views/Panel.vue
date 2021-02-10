@@ -1,25 +1,30 @@
 <template>
-  <div class="panel">
-    <div class="panel-content">
-      <AmazonAd class="mb" />
-      <div class="product-list">
-        <div class="product-list-header">
-          <div class="streamer-info">
-            <img :src="user.logo" />
-            <p>{{ formatStr(user.channel_name, 20) }} <br />STREAM GEAR</p>
+  <div>
+    <div class="panel">
+      <Header />
+      <div class="panel-content">
+        <amazon-ad class="mb" />
+        <div class="product-list">
+          <div class="product-list-header">
+            <div class="streamer-info">
+              <img :src="user.logo" />
+              <p>{{ formatStr(user.channel_name, 20) }} <br />STREAM GEAR</p>
+            </div>
+            <menu-icon v-on:toggle-show-hide="showHideProduct" />
           </div>
-          <MenuIcon v-on:toggle-show-hide="showHideProduct" />
-        </div>
-        <div class="product-list-body" ref="productList">
-          <ProductItem
-            v-for="product in products"
-            :key="product._id"
-            :product="product"
-          />
+          <div class="product-list-body" ref="productList">
+            <product-item
+              v-for="product in products"
+              :key="product._id"
+              :product="product"
+            />
+          </div>
         </div>
       </div>
     </div>
-    <Footer />
+    <footer class="footer">
+      {{ formatStr(user.channel_name, 20) }} earns from purchases.
+    </footer>
   </div>
 </template>
 
@@ -30,7 +35,7 @@
   import AmazonAd from '../components/AmazonAd'
   import ProductItem from '../components/ProductItem'
   import MenuIcon from '../components/MenuIcon'
-  import Footer from '../components/Footer'
+  import Header from '../components/Header.vue'
 
   export default {
     name: 'Panel',
@@ -39,7 +44,7 @@
       AmazonAd,
       ProductItem,
       MenuIcon,
-      Footer,
+      Header,
     },
 
     computed: {
@@ -82,12 +87,15 @@
   @import '../assets/sass/_index.scss';
 
   .panel {
-    width: 100%;
-    height: fit-content;
-    min-height: 100vh;
+    width: 320px;
+    height: 500px - 30px;
+    overflow-x: scroll;
+    background: linear-gradient(149deg, $purple 5%, $dark-gray 90%);
+    position: relative;
 
     .panel-content {
       padding: 20px 10px;
+      overflow: hidden !important;
 
       .mb {
         margin-bottom: 10px;
@@ -97,13 +105,13 @@
     .product-list {
       width: 100%;
       background: $light-purple;
-      margin-bottom: 30px;
+      margin-bottom: 15px;
 
       .product-list-header {
         width: 100%;
         @include flex(row, space-between, center);
 
-        div {
+        .streamer-info {
           @include flex(row, flex-start, center);
           img {
             width: 50px;
@@ -111,6 +119,8 @@
           }
 
           p {
+            padding: 0;
+            margin: 0;
             margin-left: 10px;
             color: $white;
           }
@@ -129,5 +139,16 @@
         max-height: 300vh;
       }
     }
+  }
+
+  .footer {
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(90deg, $purple 35%, $pink 100%);
+
+    @include flex();
+    color: $white;
+
+    font-size: 12px;
   }
 </style>

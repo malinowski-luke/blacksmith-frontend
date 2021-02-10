@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <Header />
     <router-view />
   </div>
 </template>
@@ -8,12 +7,11 @@
 <script>
   import { mapGetters } from 'vuex'
   import axios from 'axios'
-  import Header from './components/Header.vue'
 
   export default {
     name: 'App',
 
-    components: { Header },
+    components: {},
 
     computed: { ...mapGetters(['user', 'updated_at']) },
 
@@ -75,6 +73,5 @@
 
   #app {
     width: 100%;
-    background: linear-gradient(149deg, $purple 5%, $dark-gray 90%);
   }
 </style>

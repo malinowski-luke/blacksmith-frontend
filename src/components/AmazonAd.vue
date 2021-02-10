@@ -6,7 +6,7 @@
   >
     <div class="inner-box">
       <img src="../assets/img/amazon.png" />
-      <h3>Shop deals for gamers</h3>
+      <h5>Shop deals for gamers</h5>
     </div>
   </a>
 </template>
@@ -37,7 +37,7 @@
         width: 90px;
       }
 
-      h3 {
+      h5 {
         margin: 0;
         color: $white;
       }
