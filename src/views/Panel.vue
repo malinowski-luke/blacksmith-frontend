@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="panel">
-      <Header />
+      <header class="header">
+        <img src="../assets/img/amazon-small.png" />
+      </header>
       <div class="panel-content">
         <amazon-ad class="mb" />
         <div class="product-list">
@@ -35,7 +37,6 @@
   import AmazonAd from '../components/AmazonAd'
   import ProductItem from '../components/ProductItem'
   import MenuIcon from '../components/MenuIcon'
-  import Header from '../components/Header.vue'
 
   export default {
     name: 'Panel',
@@ -44,7 +45,6 @@
       AmazonAd,
       ProductItem,
       MenuIcon,
-      Header,
     },
 
     computed: {
@@ -88,7 +88,7 @@
 
   .panel {
     width: 320px;
-    height: 500px - 30px;
+    height: 450px - 30px;
     overflow-x: scroll;
     background: linear-gradient(149deg, $purple 5%, $dark-gray 90%);
     position: relative;
@@ -138,6 +138,23 @@
         // transitions don't work with fit-content or auto
         max-height: 300vh;
       }
+    }
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    color: $white;
+    background: $dark-purple;
+    box-shadow: 0 5px 10px $black;
+    z-index: 1;
+    @include flex();
+
+    img {
+      width: 30px;
+      height: 30px;
     }
   }
 

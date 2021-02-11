@@ -85,7 +85,7 @@
     "views": {
       "panel": {
         "viewerUrl": "http://localhost:8080/panel.html",
-        "height": 500,
+        "height": 450,
         "canLinkExternalContent": false
       },
       "config": {

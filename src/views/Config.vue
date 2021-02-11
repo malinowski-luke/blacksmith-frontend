@@ -7,18 +7,23 @@
     class="config"
   >
     <div class="config-wrapper p-2">
-      <div class="row">
+      <div class="amazon-info d-flex align-items-center p-2">
+        <img :src="user.logo" />
+        <span class="ml-2">
+          <h5>Amazon Blacksmith</h5>
+          <p>Created by Amazon</p>
+        </span>
+      </div>
+
+      <div class="row mt-3">
         <div class="col-lg-8">
-          <div class="amazon-info d-flex align-items-center">
-            <img :src="user.logo" />
-            <span class="ml-2">
-              <h5>Amazon Blacksmith</h5>
-              <p>Created by Amazon</p>
-            </span>
-          </div>
+          <h4>Product List</h4>
+          <hr />
         </div>
         <div class="col-lg-4">
           <div class="panel-wrapper">
+            <h4>Preview</h4>
+            <hr />
             <panel />
           </div>
         </div>
@@ -46,7 +51,7 @@
 
   .panel-wrapper {
     width: 320px;
-    height: 500px - 30px;
+    height: 450px - 30px;
   }
   .config {
     // color: $white;
@@ -55,8 +60,14 @@
 
     .config-wrapper {
       .amazon-info {
+        width: 100%;
+        // height: 50px;
+        background: #f0f1f2;
+        border: 1px solid $black;
+        border-radius: 5px;
+
         img {
-          width: 75px;
+          width: 50px;
         }
         span p,
         span h5 {
