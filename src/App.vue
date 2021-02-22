@@ -13,10 +13,12 @@
 
     components: {},
 
-    computed: { ...mapGetters(['user', 'updated_at']) },
+    computed: { ...mapGetters(['user', 'updated_at', 'products']) },
 
     created() {
       if (!this.user.channel_id) this.fetchTwitchUserData()
+
+      this.fetchProducts()
     },
 
     methods: {
@@ -62,6 +64,18 @@
         } catch (err) {
           console.error(err.message)
           return
+        }
+      },
+
+      async fetchProducts() {
+        try {
+          const response = await axios.get(`/product/${this.user.channel_id}`)
+          console.log(response, 'hit')
+          if (response.data.length > 0) {
+            this.$store.commit('products:set', { products: [...response.data] })
+          }
+        } catch (err) {
+          console.log(err)
         }
       },
     },

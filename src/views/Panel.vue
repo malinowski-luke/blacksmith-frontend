@@ -18,7 +18,11 @@
             <product-item
               v-for="product in products"
               :key="product._id"
-              :product="product"
+              :title="product.title"
+              :img="product.img"
+              :has_prime="product.has_prime"
+              :price="product.price"
+              :url="product.url"
             />
           </div>
         </div>
@@ -32,7 +36,6 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import axios from 'axios'
 
   import AmazonAd from '../components/AmazonAd'
   import ProductItem from '../components/ProductItem'
@@ -51,31 +54,11 @@
       ...mapGetters(['user', 'products']),
     },
 
-    created() {
-      if (this.products.length === 0) this.fetchProducts()
-    },
-
     mounted() {
       console.log(this.products)
     },
 
     methods: {
-      async fetchProducts() {
-        try {
-          const response = await axios.post('http://localhost:3000/product', {
-            channel_id: this.user.channel_id,
-          })
-
-          console.log(response)
-          if (response.data.length > 0) {
-            console.log('hit')
-            this.$store.commit('products:set', { products: [...response.data] })
-          }
-        } catch (err) {
-          console.log(err)
-        }
-      },
-
       showHideProduct() {
         this.$refs.productList.classList.toggle('show')
       },

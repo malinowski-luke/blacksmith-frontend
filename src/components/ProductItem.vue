@@ -1,11 +1,11 @@
 <template>
-  <a class="product" :href="product.url" target="_blank">
-    <img :src="product.img" />
+  <a class="product" :href="url" target="_blank">
+    <img :src="img" />
     <div>
-      <p>{{ formatStr(product.title, 20) }}</p>
+      <p>{{ formatStr(title, 20) }}</p>
       <span>
-        {{ product.price }}
-        <img v-if="product.has_prime === true" src="../assets/img/prime.png" />
+        {{ price }}
+        <img v-if="has_prime === true" src="../assets/img/prime.png" />
       </span>
     </div>
   </a>
@@ -14,7 +14,28 @@
 <script>
   export default {
     name: 'ProductItem',
-    props: ['product'],
+    props: {
+      title: {
+        type: String,
+        default: '',
+      },
+      img: {
+        type: String,
+        default: '',
+      },
+      has_prime: {
+        type: Boolean,
+        default: false,
+      },
+      price: {
+        type: Number,
+        default: 0,
+      },
+      url: {
+        type: String,
+        default: '',
+      },
+    },
   }
 </script>
 
